@@ -1,29 +1,25 @@
 package com.justfor.seckill.controller;
 
-import com.justfor.seckill.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.justfor.seckill.domain.MiaoshaUser;
+import com.justfor.seckill.result.Result;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.List;
-
 /**
  * @author lth
- * @version 1.0.0
- * @date
+ * @date 2019年10月11日 14:09
  */
 
 @Controller
+@RequestMapping("/user")
 public class UserController {
 
-    @Autowired
-    private UserService userService;
-
-    @RequestMapping("/db/get")
+    @RequestMapping("/info")
     @ResponseBody
-    public List<User> findUser(){
-       return userService.getUser();
+    public Result<MiaoshaUser> info(Model model, MiaoshaUser user) {
+        return Result.success(user);
     }
 
 }

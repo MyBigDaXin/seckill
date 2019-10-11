@@ -46,7 +46,8 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
 
         // 在这里解析出cookie的参数 及返回对象
         String parameToken = request.getParameter(RedisConstant.COOKI_NAME_TOKEN);
-        String cookieToken = getCookieValue(request, parameToken);
+        //TODO 我就说是解析token这里出了问题
+        String cookieToken = getCookieValue(request, RedisConstant.COOKI_NAME_TOKEN);
 
         if (StringUtils.isEmpty(cookieToken) && StringUtils.isEmpty(parameToken)) {
             return null;

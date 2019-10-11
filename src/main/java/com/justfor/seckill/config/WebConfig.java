@@ -2,6 +2,7 @@ package com.justfor.seckill.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -13,7 +14,7 @@ import java.util.List;
  * @date 2019年10月10日 15:11
  */
 
-
+@Configuration
 public class WebConfig implements WebMvcConfigurer{
 
     @Autowired

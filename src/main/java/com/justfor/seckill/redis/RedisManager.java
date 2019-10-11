@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
 public class RedisManager {
 
     @Autowired
-    private StringRedisTemplate redisTemplate;
+    private RedisTemplate<String,String> redisTemplate;
 
     /**
      * @Description: 设置对象
@@ -39,7 +39,7 @@ public class RedisManager {
         if (seconds <= 0) {
             redisTemplate.opsForValue().set(reallyKey, json);
         } else {
-            redisTemplate.opsForValue().set(reallyKey, json, seconds, TimeUnit.SECONDS);
+            redisTemplate.opsForValue().set(reallyKey, json, seconds, TimeUnit.MINUTES);
         }
         return true;
     }
@@ -51,9 +51,9 @@ public class RedisManager {
      * @Author: Tonghuan
      * @Date: 2019/10/10
      */
-    public <T> T get(MiaoShaUserKey preFix, String token, Class<T> miaoshaUserClass) {
+    public <T> T get(KeyPrefix preFix, String token, Class<T> miaoshaUserClass) {
         String prefix = preFix.getPrefix();
-        String reallyKey = prefix + ":" + token;
+        String reallyKey = prefix + token;
         String json = redisTemplate.opsForValue().get(reallyKey);
         try {
             return stringToBean(json, miaoshaUserClass);
